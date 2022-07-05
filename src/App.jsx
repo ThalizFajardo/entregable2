@@ -21,10 +21,10 @@ function App() {
 ///////////////////convertir unidads de temperatura//////////////////////////////
  const Convert = () => {
     if (units === "°F") {
-      setTemp((temp -32)*0.55)
+      setTemp(((temp -32)*0.55).toFixed(2))
       setUnits("°C")
     } else {
-      setTemp((temp*1.8)+32)
+      setTemp(((temp*1.8)+32).toFixed(2))
       setUnits("°F")
     }
   }
@@ -38,7 +38,7 @@ function App() {
      
      .then(res => {
           setData(res.data)
-          setTemp(1.8*(((res.data.main?.temp)-273)+32))
+          setTemp((1.8*(((res.data.main?.temp)-273)+32)).toFixed(2))
           
         })
       }
@@ -59,7 +59,7 @@ function App() {
         <p><b>Pressure:</b>{data.main?.pressure} hPa</p>
         <p className="humidity"><b>Humidity:</b> {data.main?.humidity} %</p>
         <p className="wind"><b>Wind speed: </b>{data.wind?.speed} m/s</p>
-        <p ><b>Temp:</b>{temp.toFixed(2)} {units}</p>
+        <p ><b>Temp:</b>{temp} {units}</p>
        
         <button onClick={Convert} >degrees °F / °C</button>
       </div>
